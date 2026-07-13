@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SurTech – Ask a Question</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #001f3f;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      text-align: center;
+    }
+    header {
+      background-color: #0033A0;
+      padding: 10px;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+    .welcome-bar {
+      background-color: #111;
+      color: #FFD700;
+      padding: 8px;
+      font-weight: bold;
+    }
+    .main {
+      padding: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    h1 {
+      color: #FFFFFF;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: #FFD700;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+    .back-wrap {
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 1.4em;
+      font-weight: bold;
+      margin-top: 30px;
+      margin-bottom: 15px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #0047AB;
+      color: #FFD700;
+      text-align: center;
+    }
+
+    /* FAQ dropdown */
+    .faq-item {
+      background-color: #0033A0;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 14px 20px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+    .faq-item summary::after {
+      content: "▾";
+      color: #FFD700;
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+    .faq-item[open] summary::after {
+      transform: rotate(180deg);
+    }
+    .faq-item summary:hover {
+      background-color: #003F8A;
+    }
+    .faq-answer {
+      padding: 0 20px 16px 20px;
+      color: #E0E0E0;
+      line-height: 1.5;
+    }
+
+    /* Contact form */
+    .contact-box {
+      background-color: #002a5c;
+      border-radius: 10px;
+      padding: 25px;
+      margin-top: 15px;
+      margin-bottom: 40px;
+    }
+    .contact-intro {
+      color: #E0E0E0;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    label {
+      font-weight: bold;
+      color: #FFD700;
+      margin-bottom: 4px;
+      display: block;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: none;
+      font-family: inherit;
+      font-size: 1em;
+      box-sizing: border-box;
+      background-color: #FFFFFF;
+      color: #001f3f;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    .submit-btn {
+      background-color: #0047AB;
+      border: none;
+      border-radius: 10px;
+      padding: 14px 25px;
+      color: white;
+      font-weight: bold;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      align-self: center;
+      margin-top: 6px;
+    }
+    .submit-btn:hover {
+      background-color: #005FCC;
+    }
+    footer {
+      background-color: #0033A0;
+      padding: 10px;
+      font-size: 1em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="SurTech Logo.png" style="height:80px; vertical-align:middle;">
+    SURTECH
+  </header>
+
+  <div class="welcome-bar">
+    Welcome to SURTECH – Powered by JIS Group
+  </div>
+
+  <div class="main">
+    <h1>Ask a Question</h1>
+    <div class="back-wrap">
+      <a href="index.html" class="back-link">&larr; Back to Home</a>
+    </div>
+
+    <div class="section-title">Frequently Asked Questions</div>
+
+    <details class="faq-item">
+      <summary>1. What is the status of SurTech? Is it approved by AICTE Etc. regulatory bodies?</summary>
+      <div class="faq-answer">Dr. Sudhir Chandra Sur Institute of Technology & Sports Complex is Approved by the All India Council for Technical Education (AICTE) and Affiliated to MAULANA ABUL KALAM AZAD UNIVERSITY OF TECHNOLOGY (MAKAUT,WB)</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>2. What are the different programs offered by Institute?</summary>
+      <div class="faq-answer">a. Post Graduate (PG) M.Tech courses: (2yrs course)
+
+Communication Engineering
+Mechanical Engineering
+b. Under Graduate (UG) B.Tech Courses: (4yrs course)
+
+Electrical Engineering (EE)
+Civil Engineering (CE)
+Mechanical Engineering (ME)
+Automobile Engineering (AUE)
+Computer Science & Engineering (CSE)
+Electronics & Communication Engineering (ECE)
+Robotics (Applied for)
+c. Diploma Engineering courses: (3yrs course)
+
+Civil Engineering (CE)
+Automobile Engineering (AUE)
+d. Vocational Courses (3yrs course)
+
+Electronic Manufacturing Services (ECE)
+Automobile Engineering (AUE)</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>3. How can I view the campus map?</summary>
+      <div class="faq-answer">Use the "Campus Map" button on the home screen to see building layouts, departments, and facility locations.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>4. How do I check upcoming events?</summary>
+      <div class="faq-answer">Tap "Event Schedule" on the home screen. Events are organized into Ongoing, Upcoming, and Past sections.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>5. What is the duration and eligibility of each program?</summary>
+      <div class="faq-answer">Engineering Programme
+
+B.Tech
+
+Duration – 4 Years
+Criteria – Candidates must pass Higher Secondary (10+2) examination of West Bengal Council of Higher Secondary Education or Equivalent Examination from a Council / Board recognized by the State Government/Central Government concerned with individual pass marks (in both Theory and Practical wherever applicable) in Physics and Mathematics as compulsory subjects with Chemistry / Biotechnology / Biology / Computer Science / Computer Application having minimum of 45% marks in the above subjects taken together (40% for Reserve Category Candidates) as well as pass in English with a minimum of 30% marks (for all categories of candidates) in the said qualifying examination.
+Age Restriction – The lower age limit should be 17 as on 31.12.2020.
+B. Tech – Lateral Entry
+
+Duration – 3 Years
+Criteria – Diploma & B.Sc. Degree holders having at least 45% marks (40% in case of Reserve Category) with valid WBJELET score (Pass marks in XII standard with mathematics in case of B.Sc. Degree Holders.)
+Diploma
+
+Duration – 3 Years
+Criteria – 10th Standard qualified with minimum 35% in aggregate along with valid score in Jexpo of current year.
+M.Tech
+
+Duration – 2 Years
+Criteria – Bachelor Degree or equivalent in the relevant field having at least 50% marks with current year GATE/PGET/CEE-AMPAI-MASTERS rank or score.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>6. How do I register for an event?</summary>
+      <div class="faq-answer">Registration details are shared closer to the event date and posted under the relevant listing in the Event Schedule.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>7. Do you have tie up with any foreign university?</summary>
+      <div class="faq-answer">Yes, AIT Bangkok.
+</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>8. How do I contact the organizing team?</summary>
+      <div class="faq-answer">Use the contact form at the bottom of this page, or visit the reception desk for immediate assistance.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>9. Is Wi-Fi available on campus?</summary>
+      <div class="faq-answer">Yes, campus Wi-Fi is available in all academic buildings. Login credentials are provided by your department.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>10. What are the reception desk hours?</summary>
+      <div class="faq-answer">The reception is open on all working days during regular college hours. Timings may vary on event days.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>11. Can I propose a project or event for SURTECH?</summary>
+      <div class="faq-answer">Absolutely. Submit your proposal through the contact form below and the team will get back to you.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>12. Are external guests allowed at events?</summary>
+      <div class="faq-answer">External guests are welcome at most public events; some sessions may require prior registration or approval.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>13. What is the college timing?</summary>
+      <div class="faq-answer">Student Regular Academics: Monday to Friday (From 10:00 am to 06:00 pm)
+
+College is open for all six days a week: Monday to Saturday (From 10:00 am to 06:00 pm).</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>14. Who powers the SURTECH platform?</summary>
+      <div class="faq-answer">SURTECH is powered by JIS Group as part of its ongoing technology and student-engagement initiatives.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>15. What are the facilities provided by the Institute to make students’ Industry ready?</summary>
+      <div class="faq-answer">SurTech conducts several training programs for students like Aptitude training, Technical Training and Soft Skill Training. Students are given exposure for national and international internships as well..</div>
+    </details>
+
+    <details class="faq-item">
+      <summary>16. My question isn't listed here. What do I do?</summary>
+      <div class="faq-answer">Use the "Have More Queries?" form below to send your question directly to the SURTECH team.</div>
+    </details>
+
+    <div class="section-title">Have More Queries?</div>
+
+    <div class="contact-box">
+      <p class="contact-intro">Didn't find what you were looking for? Send us your question and we'll get back to you.</p>
+
+      <!-- 
+        NOTE: Replace "your-email@example.com" below with the actual destination email address.
+        This uses FormSubmit.co, a free service that emails form submissions — no backend needed.
+        The first submission to a new email address requires a one-time confirmation click sent to that inbox.
+      -->
+      <form action="https://formsubmit.co/your-email@example.com" method="POST">
+        <input type="hidden" name="_subject" value="New Query from SURTECH Website">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+
+        <div>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="Name" placeholder="Your full name" required>
+        </div>
+
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="Email" placeholder="you@example.com" required>
+        </div>
+
+        <div>
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="Phone Number" placeholder="+91 XXXXXXXXXX" required>
+        </div>
+
+        <div>
+          <label for="question">Your Question</label>
+          <textarea id="question" name="Question" placeholder="Type your question here..." required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit Question</button>
+      </form>
+    </div>
+
+  </div>
+
+  <footer>
+    SURTECH © 2026
+  </footer>
+</body>
+</html>

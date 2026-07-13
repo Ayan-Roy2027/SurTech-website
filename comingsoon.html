@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coming Soon | SURTECH</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#001f3f;
+    color:white;
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+    text-align:center;
+}
+
+header{
+    background:#0033A0;
+    padding:12px;
+    font-size:1.6rem;
+    font-weight:bold;
+}
+
+header img{
+    height:80px;
+    vertical-align:middle;
+    margin-right:10px;
+}
+
+.welcome-bar{
+    background:#111;
+    color:#FFD700;
+    padding:8px;
+    font-weight:bold;
+}
+
+.main{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    padding:30px;
+}
+
+h1{
+    font-size:4rem;
+    color:#FFD700;
+    margin-bottom:15px;
+}
+
+h2{
+    font-size:2rem;
+    margin-bottom:20px;
+}
+
+p{
+    max-width:600px;
+    font-size:1.1rem;
+    color:#ddd;
+    line-height:1.6;
+    margin-bottom:35px;
+}
+
+.loader{
+    width:70px;
+    height:70px;
+    border:8px solid rgba(255,255,255,0.2);
+    border-top:8px solid #FFD700;
+    border-radius:50%;
+    animation:spin 1.2s linear infinite;
+    margin-bottom:30px;
+}
+
+@keyframes spin{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
+}
+
+.button{
+    background:#0047AB;
+    color:white;
+    text-decoration:none;
+    padding:15px 35px;
+    border-radius:10px;
+    font-size:1rem;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.button:hover{
+    background:#005FCC;
+}
+
+footer{
+    background:#0033A0;
+    padding:12px;
+}
+
+.highlight{
+    color:#FFD700;
+    font-weight:bold;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+    <img src="SurTech Logo.png" alt="SURTECH Logo">
+    SURTECH
+</header>
+
+<div class="welcome-bar">
+    🚀 Welcome to SURTECH – Powered by JIS Group
+</div>
+
+<div class="main">
+
+    <div class="loader"></div>
+
+    <h1>COMING SOON</h1>
+
+    <h2>We're Building Something Amazing!</h2>
+
+    <p>
+        This section of the <span class="highlight">SURTECH Reception System</span>
+        is currently under development. Our team is working hard to bring you an
+        even better experience.
+    </p>
+
+    <a href="index.html" class="button">⬅ Back to Home</a>
+
+</div>
+
+<footer>
+    SURTECH © 2026 | Powered by JIS Group
+</footer>
+
+</body>
+</html>
