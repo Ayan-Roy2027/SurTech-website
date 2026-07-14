@@ -3,14 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SurTech Event Schedule</title>
+  <title>SurTech Reception Interface</title>
   <style>
+    html, body {
+      height: 100%;
+    }
     body {
       margin: 0;
       background-color: #001f3f;
       font-family: 'Segoe UI', sans-serif;
       color: white;
       text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
     header {
       background-color: #0033A0;
@@ -26,235 +32,41 @@
     }
     .main {
       padding: 20px;
-      max-width: 1000px;
-      margin: 0 auto;
-      text-align: left;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
     h1 {
       color: #FFFFFF;
-      margin-bottom: 10px;
-      text-align: center;
-    }
-    .back-link {
-      display: inline-block;
       margin-bottom: 20px;
-      color: #FFD700;
-      text-decoration: none;
-      font-weight: bold;
     }
-    .back-link:hover {
-      text-decoration: underline;
-    }
-    .back-wrap {
-      text-align: center;
-    }
-
-    /* Section-level dropdown (Ongoing / Upcoming / Past) */
-    .section {
-      margin-top: 25px;
-      border-radius: 10px;
-      overflow: hidden;
-      background-color: #002a5c;
-    }
-    .section summary {
-      list-style: none;
-      cursor: pointer;
-      padding: 16px 20px;
-      font-size: 1.4em;
-      font-weight: bold;
+    .buttons {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 2px solid #0047AB;
-    }
-    .section summary::-webkit-details-marker {
-      display: none;
-    }
-    .section summary::after {
-      content: "▾";
-      font-size: 0.9em;
-      transition: transform 0.2s ease;
-    }
-    .section[open] summary::after {
-      transform: rotate(180deg);
-    }
-    .section summary:hover {
-      background-color: #003F8A;
-    }
-    .section.ongoing summary { color: #7CFC00; }
-    .section.upcoming summary { color: #FFD700; }
-    .section.past summary { color: #CCCCCC; }
-
-    .section-body {
-      padding: 15px 20px 20px 20px;
-    }
-
-    /* Event-level dropdown */
-    .event-card {
-      background-color: #0033A0;
-      border-radius: 10px;
-      margin-bottom: 14px;
-      overflow: hidden;
-    }
-    .event-card:last-child {
-      margin-bottom: 0;
-    }
-    .event-card summary {
-      list-style: none;
-      cursor: pointer;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
+      justify-content: center;
+      gap: 20px;
       flex-wrap: wrap;
-      gap: 10px;
-      font-weight: normal;
-      font-size: 1em;
-      border-bottom: none;
     }
-    .event-card summary::-webkit-details-marker {
-      display: none;
-    }
-    .event-card summary::after {
-      content: "▾";
-      margin-left: 10px;
-      color: #FFD700;
-      font-size: 1em;
-      transition: transform 0.2s ease;
-    }
-    .event-card[open] summary::after {
-      transform: rotate(180deg);
-    }
-    .event-card summary:hover {
-      background-color: #003F8A;
-    }
-    .event-name {
-      font-size: 1.2em;
+    .button {
+      background-color: #0047AB;
+      border-radius: 14px;
+      padding: 28px 45px;
+      color: white;
       font-weight: bold;
-      color: #FFFFFF;
-      white-space: pre-line;
+      font-size: 1.3em;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      text-decoration: none;
+      display: inline-block;
     }
-    .event-date {
-      font-size: 0.95em;
-      color: #FFD700;
-      font-weight: bold;
-    }
-    .event-body {
-      padding: 0 20px 18px 20px;
-    }
-    .event-note {
-      color: #E0E0E0;
-      line-height: 1.4;
-      white-space: pre-line;
-    }
-    .no-events {
-      color: #AAAAAA;
-      font-style: italic;
-      margin: 0;
+    .button:hover {
+      background-color: #005FCC;
     }
     footer {
       background-color: #0033A0;
       padding: 10px;
       font-size: 1em;
-      margin-top: 30px;
-    }
-
-    /* Photo slider */
-    .slider {
-      position: relative;
-      width: 100%;
-      max-width: 480px;
-      margin-top: 14px;
-      border-radius: 10px;
-      overflow: hidden;
-      border: 2px solid #0047AB;
-      background-color: #001a33;
-    }
-    .slide-track {
-      display: flex;
-      transition: transform 0.4s ease;
-    }
-    .slide-track img {
-      width: 100%;
-      flex-shrink: 0;
-      height: 280px;
-      object-fit: cover;
-      cursor: pointer;
-      display: block;
-    }
-    .slide-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: rgba(0, 31, 63, 0.7);
-      color: #FFD700;
-      border: none;
-      font-size: 1.4em;
-      font-weight: bold;
-      padding: 8px 14px;
-      cursor: pointer;
-      border-radius: 50%;
-      transition: background-color 0.2s ease;
-    }
-    .slide-btn:hover {
-      background-color: #0047AB;
-    }
-    .slide-btn.prev { left: 10px; }
-    .slide-btn.next { right: 10px; }
-    .slide-dots {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      padding: 10px 0;
-      background-color: #001a33;
-    }
-    .slide-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background-color: #555;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-    }
-    .slide-dot.active {
-      background-color: #FFD700;
-    }
-
-    /* Lightbox */
-    .lightbox-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.9);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-      cursor: zoom-out;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-    .lightbox-overlay.active {
-      display: flex;
-    }
-    .lightbox-overlay img {
-      max-width: 90%;
-      max-height: 85vh;
-      border-radius: 8px;
-      border: 3px solid #0047AB;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
-    }
-    .lightbox-close {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      color: #FFD700;
-      font-size: 2.2em;
-      font-weight: bold;
-      cursor: pointer;
-      line-height: 1;
     }
   </style>
 </head>
@@ -269,306 +81,17 @@
   </div>
 
   <div class="main">
-    <h1>Event Schedule</h1>
-    <div class="back-wrap">
-      <a href="index.html" class="back-link">&larr; Back to Home</a>
+    <h1>Welcome to SURTECH!</h1>
+    <div class="buttons">
+
+      <a href="comingsoon.html" class="button">Campus Map</a>
+      <a href="events.html" class="button">Event Schedule</a>
+      <a href="question.html" class="button">Ask a Question</a>
     </div>
-
-    <!-- ONGOING EVENTS -->
-    <details class="section ongoing" open>
-      <summary>🟢 Ongoing Events</summary>
-      <div class="section-body">
-
-        <p class="no-events">No ongoing events at the moment.</p>
-
-      </div>
-    </details>
-
-    <!-- UPCOMING EVENTS -->
-    <details class="section upcoming">
-      <summary>🟡 Upcoming Events</summary>
-      <div class="section-body">
-         <p class="no-events">No upcoming events at the moment.</p>
-      </div>
-    </details>
-
-    <!-- PAST EVENTS -->
-    <details class="section past">
-      <summary>⚪ Past Events</summary>
-      <div class="section-body">
-
-        <details class="event-card">
-          <summary>
-            <span class="event-name">SurTech INNOVEXA Hackathon 2026</span>
-            <span class="event-date">16 May - 17 May 2026</span>
-          </summary>
-          <div class="event-body">
-            <div class="event-note">
-              Students inside and outside from our college showcased their wide variety of projects made at through the 30 hours at hackathon.
-            </div>
-            <div class="slider">
-              <div class="slide-track">
-                <img src="h1.jpeg" alt="Lighting of diya">
-                <img src="h2.jpeg" alt="A project sneakpeak">
-                <img src="h3.jpeg" alt="Prizes">
-                <img src="h4.jpeg" alt="Winners">
-              </div>
-              <button class="slide-btn prev" aria-label="Previous photo">&#10094;</button>
-              <button class="slide-btn next" aria-label="Next photo">&#10095;</button>
-              <div class="slide-dots"></div>
-            </div>
-          </div>
-        </details>
-
-        <details class="event-card">
-          <summary>
-            <span class="event-name">100 hrs In-house Internship/training for ECE students on VLSI and Embedded System by IPESP
-at the Department of ECE, SURTECH</span>
-            <span class="event-date">19th January to 10th March 2026</span>
-          </summary>
-          <div class="event-body">
-            <div class="event-note">The Internship content was designed by the Director IPESP Dr Sayan Tripathi as per the Industry standard and need. Along with him Dr Jhilam Tripathi also was there to train the students.</div>
-            <div class="slider">
-              <div class="slide-track">
-                <img src="events/ip1.jpg" alt="">
-                <img src="events/ip2.jpg" alt="">
-                <img src="events/ip3.jpg" alt="">
-                <img src="events/ip4.jpg" alt="">
-              </div>
-              <button class="slide-btn prev" aria-label="Previous photo">&#10094;</button>
-              <button class="slide-btn next" aria-label="Next photo">&#10095;</button>
-              <div class="slide-dots"></div>
-            </div>
-          </div>
-        </details>
-
-        <details class="event-card">
-          <summary>
-            <span class="event-name">Science Model competition for School Students, organised by Science and Technology Club in Association with ECE Department under the guidance of IQAC cell, SurTech</span>
-            <span class="event-date">20th November 2026</span>
-          </summary>
-          <div class="event-body">
-            <div class="event-note">As a part of outreach program, the science and Technology Club of SurTech in in Association with ECE Department, SurTech organised Science Model competition for School Students on 20th November, 2025. The presentations from different enthusiastic schools enlighten the event. The judges were very much happy with respect to the quality of the projects that ere displayed.
-
-3rd prize winner- Taki Govt Sponsored School
-2nd Prize winner- Jagabondhu Institution
-1st Prize winner- KV school, Dumdum</div>
-            <div class="slider">
-              <div class="slide-track">
-                <img src="events/S1.jpg" alt="">
-                <img src="events/S2.jpg" alt="">
-                <img src="events/S3.jpg" alt="">
-              </div>
-              <button class="slide-btn prev" aria-label="Previous photo">&#10094;</button>
-              <button class="slide-btn next" aria-label="Next photo">&#10095;</button>
-              <div class="slide-dots"></div>
-            </div>
-          </div>
-        </details>
-
-        <details class="event-card">
-          <summary>
-            <span class="event-name">Industry Collaborative Workshop on "VLSI Circuit Design using VHDL"
-Organised by the Department of ECE
-In association with IIC SurTech and Livid Design Inc.</span>
-            <span class="event-date">1st November, 2025</span>
-          </summary>
-          <div class="event-body">
-            <div class="event-note">Department of ECE in association with IIC SurTech and Livid Design Inc. organised a one day workshop on VLSI on 1st November, 2025. The preliminary objective was to involve the students of diploma colleges with modern technologies like design and fabrication and to inspire them for VHDL coding practice and to aware them about the current industry requirement for VLSI.</div>
-            <div class="slider">
-              <div class="slide-track">
-                <img src="events/vh1.jpg" alt="">
-                <img src="events/vh2.jpg" alt="">
-                <img src="events/vh3.jpg" alt="">
-              </div>
-              <button class="slide-btn prev" aria-label="Previous photo">&#10094;</button>
-              <button class="slide-btn next" aria-label="Next photo">&#10095;</button>
-              <div class="slide-dots"></div>
-            </div>
-          </div>
-        </details>
-
-        <details class="event-card">
-          <summary>
-            <span class="event-name">Alumni Talk
-Organized by
-Department of Electronics and Communication Engineering of Dr. Sudhir Chandra Sur Degree Engineering College</span>
-            <span class="event-date">6th September 2025</span>
-          </summary>
-          <div class="event-body">
-            <div class="event-note">Centre of Excellence Lab by Livid design Inc was inaugurated on 14th July 2025. As per the MOU with the company, the students will be benefitted to prepare projects for national level competitions, to attend industry ready workshops and to avail the opportunity to work in live industry projects through internships.
-
-The founder and COE of Livid design Inc briefly explained his vision about this COE with Mr Simarprit Singh, Director, JIS Group, Mr Shankar Biswas, Joint Director, JIS Group, Dr Saradindu Panda, Principal,SurTech and with the faculty members of the ECE department.</div>
-            <div class="slider">
-              <div class="slide-track">
-                <img src="events/st1.jpg" alt="">
-                <img src="events/st2.jpg" alt="">
-                <img src="events/st3.jpg" alt="">
-              </div>
-              <button class="slide-btn prev" aria-label="Previous photo">&#10094;</button>
-              <button class="slide-btn next" aria-label="Next photo">&#10095;</button>
-              <div class="slide-dots"></div>
-            </div>
-          </div>
-        </details>
-
-        <details class="event-card">
-          <summary>
-            <span class="event-name">6-days online ATAL FDP on Next Wave: Advancements in Next Generation Communications (Application no.: 1748541082, FDP ID - 4972)</span>
-            <span class="event-date">25th August 2025- 30th August 2025</span>
-          </summary>
-          <div class="event-body">
-            <div class="event-note">Participants who fulfilled the required criteria of attendance and test performance received the Certificates from ATAL Portal. The session concluded with expressions of gratitude towards AICTE-ATAL Academy, SurTech management, resource persons, and participants and the organizing committee for their collective effort in making the FDP a resounding success. The program not only fulfilled its objectives but also paved the way for future collaborations and innovations in next-generation communication technologies.</div>
-            <div class="slider">
-              <div class="slide-track">
-                <img src="events/at1.jpg" alt="">
-                <img src="events/at2.jpg" alt="">
-                <img src="events/at3.jpg" alt="">
-              </div>
-              <button class="slide-btn prev" aria-label="Previous photo">&#10094;</button>
-              <button class="slide-btn next" aria-label="Next photo">&#10095;</button>
-              <div class="slide-dots"></div>
-            </div>
-          </div>
-        </details>
-
-        <details class="event-card">
-          <summary>
-            <span class="event-name">Inauguration of STEM Robotics & AI Centre of excellence by Livid design Inc
-at the Department of ECE, SURTECH</span>
-            <span class="event-date">14th July 2025</span>
-          </summary>
-          <div class="event-body">
-            <div class="event-note">Centre of Excellence Lab by Livid design Inc was inaugurated on 14th July 2025. As per the MOU with the company, the students will be benefitted to prepare projects for national level competitions, to attend industry ready workshops and to avail the opportunity to work in live industry projects through internships.
-
-The founder and COE of Livid design Inc briefly explained his vision about this COE with Mr Simarprit Singh, Director, JIS Group, Mr Shankar Biswas, Joint Director, JIS Group, Dr Saradindu Panda, Principal,SurTech and with the faculty members of the ECE department.</div>
-            <div class="slider">
-              <div class="slide-track">
-                <img src="events/st1.jpg" alt="">
-                <img src="events/st2.jpg" alt="">
-                <img src="events/st3.jpg" alt="">
-              </div>
-              <button class="slide-btn prev" aria-label="Previous photo">&#10094;</button>
-              <button class="slide-btn next" aria-label="Next photo">&#10095;</button>
-              <div class="slide-dots"></div>
-            </div>
-          </div>
-        </details>
-
-        <details class="event-card">
-          <summary>
-            <span class="event-name">In-house Internship/training for ECE students on STEM Robotics & AI by Livid design Inc
-at the Department of ECE, under the guidance of IQAC cell, SURTECH</span>
-            <span class="event-date">30th June to 4th August 2025</span>
-          </summary>
-          <div class="event-body">
-            <div class="event-note">The internship was conducted by Mr Saurabh Kumar, CEO, Livid Design Inc. Students learnt about STEP Robotics and AI from grass root level. Students in small groups, participated in solving real life problems. Each of them worked in live project for last 2weeks of the entire time schedule.</div>
-            <div class="slider">
-              <div class="slide-track">
-                <img src="events/li1.jpg" alt="">
-                <img src="events/li2.jpg" alt="">
-                <img src="events/li3.jpg" alt="">
-                <img src="events/li4.jpg" alt="">
-                <img src="events/li5.jpg" alt="">
-              </div>
-              <button class="slide-btn prev" aria-label="Previous photo">&#10094;</button>
-              <button class="slide-btn next" aria-label="Next photo">&#10095;</button>
-              <div class="slide-dots"></div>
-            </div>
-          </div>
-        </details>
-
-        <details class="event-card">
-          <summary>
-            <span class="event-name">International Conference "Recent Advancement in the Field of Engineering and Technology" RAFET 2.0, organized by Department ECE, CE & AUE, under the guidance of IQAC, DSCSITSC</span>
-            <span class="event-date">16th and 17th April 2026</span>
-          </summary>
-          <div class="event-body">
-            <div class="event-note">Centre of Excellence Lab by Livid design Inc was inaugurated on 14th July 2025. As per the MOU with the company, the students will be benefitted to prepare projects for national level competitions, to attend industry ready workshops and to avail the opportunity to work in live industry projects through internships.
-
-The founder and COE of Livid design Inc briefly explained his vision about this COE with Mr Simarprit Singh, Director, JIS Group, Mr Shankar Biswas, Joint Director, JIS Group, Dr Saradindu Panda, Principal,SurTech and with the faculty members of the ECE department.</div>
-            <div class="slider">
-              <div class="slide-track">
-                <img src="events/x1.jpg" alt="">
-                <img src="events/x2.jpg" alt="">
-                <img src="events/x3.jpg" alt="">
-                <img src="events/x4.jpg" alt="">
-              </div>
-              <button class="slide-btn prev" aria-label="Previous photo">&#10094;</button>
-              <button class="slide-btn next" aria-label="Next photo">&#10095;</button>
-              <div class="slide-dots"></div>
-            </div>
-          </div>
-        </details>
-
-      </div>
-    </details>
-
   </div>
 
   <footer>
     SURTECH © 2026
   </footer>
-
-  <!-- Lightbox for enlarging gallery photos -->
-  <div class="lightbox-overlay" id="lightbox">
-    <span class="lightbox-close" id="lightboxClose">&times;</span>
-    <img id="lightboxImg" src="" alt="Enlarged photo">
-  </div>
-
-  <script>
-    // Lightbox
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxClose = document.getElementById('lightboxClose');
-
-    function openLightbox(img) {
-      lightboxImg.src = img.src;
-      lightboxImg.alt = img.alt;
-      lightbox.classList.add('active');
-    }
-    function closeLightbox() {
-      lightbox.classList.remove('active');
-      lightboxImg.src = '';
-    }
-    lightbox.addEventListener('click', closeLightbox);
-    lightboxClose.addEventListener('click', closeLightbox);
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeLightbox();
-    });
-
-    // Sliders
-    document.querySelectorAll('.slider').forEach(slider => {
-      const track = slider.querySelector('.slide-track');
-      const slides = Array.from(track.children);
-      const prevBtn = slider.querySelector('.slide-btn.prev');
-      const nextBtn = slider.querySelector('.slide-btn.next');
-      const dotsWrap = slider.querySelector('.slide-dots');
-      let index = 0;
-
-      slides.forEach((_, i) => {
-        const dot = document.createElement('div');
-        dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
-        dot.addEventListener('click', () => goTo(i));
-        dotsWrap.appendChild(dot);
-      });
-      const dots = Array.from(dotsWrap.children);
-
-      function update() {
-        track.style.transform = `translateX(-${index * 100}%)`;
-        dots.forEach((d, i) => d.classList.toggle('active', i === index));
-      }
-      function goTo(i) {
-        index = (i + slides.length) % slides.length;
-        update();
-      }
-
-      prevBtn.addEventListener('click', () => goTo(index - 1));
-      nextBtn.addEventListener('click', () => goTo(index + 1));
-      slides.forEach(img => img.addEventListener('click', () => openLightbox(img)));
-
-      update();
-    });
-  </script>
 </body>
 </html>
